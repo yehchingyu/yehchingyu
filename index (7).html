@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>YEHCHING YU｜免費算出你缺少的數字</title>
+<meta name="description" content="輸入生日，免費算出你的生命靈數與缺數，看你缺什麼能量，推薦適合你的客製靈數水晶手鍊。">
+<meta property="og:title" content="YEHCHING YU｜免費算出你缺少的數字">
+<meta property="og:description" content="輸入生日，免費算出生命靈數與缺數，推薦適合你的手鍊。">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700&display=swap">
+<style>
+/* Layout: 白底單欄官網長頁，金萱字體；智慧綠標題、指引黃 CTA、靈性紫品牌、沉穩灰內文；外框標籤呼應品牌規範 */
+:root{
+  --bg:#FFFFFF; --paper:#FFFFFF; --ink:#454145; --ink-2:#5E5A5E; --mute:#9A969A;
+  --line:#E6E3DD; --line-strong:#688D81; --accent:#688D81; --accent-soft:#f3f6f5;
+  --gold:#E1BD83; --gold-soft:#fbf5ec; --violet:#A3A5CF; --violet-soft:#f4f4f9;
+  --n1:#C2635A; --n2:#E0995A; --n3:#E1BD83; --n4:#7FA88A; --n5:#6F93BF; --n6:#5B6AA6; --n7:#A3A5CF; --n8:#E4B7AE; --n9:#F2F0EC; --n9-stroke:#C9C5BD;
+  --serif:"Noto Serif TC","Songti TC","PMingLiU",serif;
+  --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  color-scheme:light;
+}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.85;margin:0;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+h1,h2,h3{font-family:var(--serif);font-weight:700;color:var(--accent);text-wrap:balance;margin:0}
+p{margin:0}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.eyebrow{font-family:var(--sans);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+.eyebrow b{font-weight:500;color:var(--accent)}
+.sec-head .eyebrow{justify-self:start;display:inline-block;border:1.5px solid var(--accent);border-radius:5px;padding:3px 12px;color:var(--accent);font-weight:500;letter-spacing:.14em}
+.sec-head .eyebrow b,.kicker b{color:var(--accent)}
+mark{background:linear-gradient(transparent 62%,var(--gold) 62%);color:inherit;padding:0 2px}
+.spark{display:inline-block;width:.9em;height:.9em;vertical-align:.1em;color:var(--accent)}
+.num{font-variant-numeric:tabular-nums}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:60px}
+.brand{font-family:var(--serif);font-weight:700;font-size:18px;letter-spacing:.12em;text-decoration:none;display:flex;align-items:center;gap:10px;color:var(--violet)}
+.brand .spark{color:var(--violet)}
+.brand small{font-family:var(--sans);font-size:10.5px;letter-spacing:.3em;color:var(--mute)}
+nav.menu{display:flex;gap:22px;flex-wrap:wrap}
+nav.menu a{text-decoration:none;font-size:12px;letter-spacing:.14em;color:var(--ink-2)}
+nav.menu a:hover{color:var(--accent)}
+@media (max-width:1100px){nav.menu{display:none}}
+.brand,.line-btn,nav.menu a{white-space:nowrap}
+nav.menu{flex-wrap:nowrap;gap:18px}
+header.top .wrap{max-width:1240px}
+
+/* sections */
+section{padding-block:clamp(56px,8vw,96px);border-bottom:1px solid var(--line)}
+.sec-head{display:grid;gap:10px;margin-bottom:clamp(28px,4vw,44px)}
+.sec-head h2{font-size:clamp(24px,3.2vw,32px);letter-spacing:.04em}
+.sec-head p{color:var(--ink-2);max-width:60ch}
+
+/* hero */
+.hero{padding-block:clamp(48px,7vw,88px)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,64px);align-items:start}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(28px,3.4vw,40px);line-height:1.4;letter-spacing:.04em;margin-block:14px 18px}
+.hero .lead{color:var(--ink-2);max-width:34em}
+.hero-steps{display:flex;flex-wrap:wrap;gap:8px 0;margin-top:28px;font-size:12.5px;color:var(--mute);letter-spacing:.06em}
+.hero-steps span{display:inline-flex;align-items:center}
+.hero-steps span+span::before{content:"";width:22px;height:1px;background:var(--line);margin-inline:10px}
+
+.calc{background:var(--paper);border:1.5px solid var(--accent);border-radius:8px;box-shadow:0 10px 30px -18px rgba(104,141,129,0.45);padding:clamp(20px,3vw,32px);display:grid;gap:20px}
+.calc h3{font-size:20px;letter-spacing:.08em}
+.field{display:grid;gap:6px}
+.field label{font-size:12px;letter-spacing:.12em;color:var(--ink-2)}
+.date-row{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:10px}
+.input{width:100%;background:transparent;border:0;border-bottom:1.5px solid var(--line-strong);padding:8px 2px;font-size:20px;font-family:var(--serif);font-variant-numeric:tabular-nums;border-radius:0}
+.input:focus{outline:none;border-bottom-color:var(--gold)}
+select.input{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 12px) 55%,calc(100% - 7px) 55%;background-size:5px 5px;background-repeat:no-repeat}
+select.input option{background:var(--paper);color:var(--ink)}
+.toggle{display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:14px;color:var(--ink-2)}
+.toggle input{margin-top:6px;accent-color:var(--accent)}
+.lunar-box{border-top:1px dashed var(--line);padding-top:16px;display:grid;gap:10px}
+.lunar-box .hint{font-size:12.5px;color:var(--mute)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1.5px solid var(--gold);background:var(--gold);color:var(--ink);font-weight:700;padding:14px 28px;font-size:14px;letter-spacing:.24em;border-radius:6px;cursor:pointer;text-decoration:none;transition:background .2s,color .2s}
+.btn:hover{background:var(--gold-soft)}
+.btn.ghost{background:transparent;color:var(--accent);border-color:var(--accent)}
+.btn.ghost:hover{background:var(--accent-soft)}
+.err{color:var(--n1);font-size:13px}
+
+/* results */
+.chip-row{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);padding:4px 12px;font-size:12.5px;letter-spacing:.06em;background:var(--paper)}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;border:1px solid transparent}
+
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--line);margin-bottom:28px}
+.tabs button{background:none;border:0;border-bottom:2px solid transparent;padding:10px 18px;font-size:13.5px;letter-spacing:.12em;cursor:pointer;color:var(--mute);margin-bottom:-1px}
+.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--gold);font-weight:700}
+
+.worksheet{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,48px)}
+@media (max-width:860px){.worksheet{grid-template-columns:1fr}}
+.sum-line{font-family:var(--serif);font-size:clamp(16px,2.2vw,20px);letter-spacing:.08em;overflow-x:auto;white-space:nowrap;padding-bottom:4px}
+.sum-line .eq{color:var(--accent);font-weight:600}
+.step{border:1px solid var(--line);border-radius:8px;background:var(--paper);padding:18px 20px;display:grid;gap:8px}
+.step .eyebrow{letter-spacing:.16em}
+.table{display:grid;grid-template-columns:repeat(2,1fr);border-top:2px solid var(--accent);border-left:1px solid var(--line)}
+.table>div{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 16px;display:grid;gap:2px;background:var(--paper);min-width:0}
+.table .k{font-family:var(--serif);font-size:14px;color:var(--ink-2)}
+.table .k small{display:block;font-family:var(--sans);font-size:11px;color:var(--mute)}
+.table .v{font-family:var(--serif);font-size:24px;font-variant-numeric:tabular-nums}
+.table .wide{grid-column:1/-1;background:var(--gold-soft)}
+.table .wide .v{color:var(--accent)}
+
+.grid-wrap{display:grid;gap:14px;justify-items:center}
+.grid-wrap svg{width:100%;max-width:360px;height:auto}
+.legend{font-size:12px;color:var(--mute);text-align:center}
+
+.life{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,4vw,48px);align-items:start;margin-top:clamp(40px,6vw,64px);padding-top:clamp(32px,5vw,48px);border-top:1px solid var(--line)}
+@media (max-width:640px){.life{grid-template-columns:1fr}}
+.life .big{font-family:var(--serif);font-size:clamp(88px,14vw,140px);line-height:.9;font-weight:400;color:var(--accent)}
+.life h3{font-size:22px;margin-bottom:12px;letter-spacing:.04em}
+.life p{color:var(--ink-2);max-width:62ch}
+.life .weak{margin-top:14px;padding-left:14px;border-left:3px solid var(--gold);font-size:14px}
+
+.lines{margin-top:clamp(32px,5vw,48px);display:grid;gap:0;border-top:1px solid var(--line)}
+.line-item{display:grid;grid-template-columns:90px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.line-item .code{font-family:var(--serif);font-size:20px;letter-spacing:.14em;color:var(--accent)}
+.line-item h4{margin:0 0 2px;font-family:var(--serif);font-weight:700;color:var(--accent);font-size:15px}
+.line-item p{color:var(--ink-2);font-size:14px}
+.empty-note{color:var(--mute);font-size:14px;padding:14px 0}
+
+/* missing */
+.miss-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.miss{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:24px;display:grid;gap:12px;align-content:start;min-width:0}
+.miss-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.miss-n{display:flex;align-items:baseline;gap:10px}
+.miss-n b{font-family:var(--serif);font-size:44px;font-weight:400;line-height:1}
+.miss-n span{font-size:12px;letter-spacing:.18em;color:var(--mute)}
+.tag{font-size:11.5px;letter-spacing:.12em;padding:2px 10px;border:1.5px solid var(--accent);color:var(--accent);border-radius:4px}
+.tag.post{border-color:var(--violet);color:#727391}
+.swatch{height:4px;width:100%}
+.miss .kw{font-family:var(--serif);font-size:15px}
+.miss p{font-size:14px;color:var(--ink-2)}
+.miss .dir{font-size:13.5px;border-top:1px solid var(--line);padding-top:10px}
+.miss .dir b{font-weight:500;color:var(--ink)}
+.post-note{font-size:13.5px;background:var(--violet-soft);padding:10px 12px;color:var(--ink)}
+
+/* crystals */
+.preview{display:grid;grid-template-columns:minmax(0,360px) 1fr;gap:clamp(24px,4vw,48px);align-items:center;margin-bottom:clamp(36px,5vw,56px)}
+@media (max-width:720px){.preview{grid-template-columns:1fr;justify-items:center;text-align:center}}
+.pv-main{width:100%;max-width:360px;aspect-ratio:1;object-fit:cover;border-radius:10px;display:block}
+.pv-thumbs{display:flex;gap:8px;margin-top:10px}
+.pv-thumbs button{padding:0;border:2px solid transparent;border-radius:8px;overflow:hidden;cursor:pointer;background:none;width:64px;height:64px}
+.pv-thumbs button[aria-pressed="true"]{border-color:var(--gold)}
+.pv-thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.pv-note{font-size:12.5px;color:var(--mute);margin-top:10px}
+.preview h3{font-size:22px;margin-bottom:8px}
+.preview p{color:var(--ink-2)}
+.cry-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.cry{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px;display:grid;gap:10px;align-content:start;background:var(--paper);min-width:0}
+.cry-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.cry h4{margin:0;font-family:var(--serif);font-weight:700;color:var(--accent);font-size:18px;letter-spacing:.06em}
+.cry .fits{display:flex;gap:4px;flex-wrap:wrap}
+.cry .fit{font-size:11px;padding:1px 7px;border:1px solid var(--line);color:var(--ink-2)}
+.cry .fit.hit{border-color:var(--accent);background:var(--accent);color:#fff}
+.cry ul{margin:0;padding-left:16px;font-size:13.5px;color:var(--ink-2)}
+.cry .chakra{font-size:12px;color:var(--mute);letter-spacing:.06em}
+.cry.star{background:var(--gold-soft)}
+.badge{font-size:11px;letter-spacing:.12em;background:var(--gold);color:var(--ink);font-weight:500;border-radius:4px;padding:2px 8px;white-space:nowrap}
+.cry-group-title{font-family:var(--serif);font-size:17px;margin:34px 0 14px;display:flex;gap:12px;align-items:center}
+.cry-group-title::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* works */
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2.4vw,28px)}
+@media (max-width:860px){.works{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.works{grid-template-columns:1fr}}
+.work{display:grid;gap:10px}
+.work .ph{aspect-ratio:4/5;background:#FAF9F6;border-radius:8px;display:grid;place-items:center;position:relative;overflow:hidden;max-width:100%}
+.work .ph canvas{width:70%;height:auto;aspect-ratio:1}
+.work .ph .tagline{position:absolute;left:12px;top:12px;font-size:10.5px;letter-spacing:.16em;color:var(--mute)}
+.work .ph .match{position:absolute;right:12px;top:12px}
+.work h4{margin:0;font-family:var(--serif);font-weight:700;color:var(--accent);font-size:15.5px}
+.work p{font-size:13px;color:var(--mute)}
+.work.dim{opacity:.55}
+
+/* process */
+.process{display:grid;grid-template-columns:repeat(5,1fr);border-top:2px solid var(--accent)}
+@media (max-width:900px){.process{grid-template-columns:1fr}}
+.pstep{padding:22px 18px 22px 0;display:grid;gap:8px;align-content:start;border-bottom:1px solid var(--line)}
+@media (min-width:901px){.pstep+.pstep{padding-left:18px;border-left:1px solid var(--line)}}
+.pstep .no{font-family:var(--serif);font-size:13px;color:var(--gold);font-weight:700;letter-spacing:.1em}
+.pstep h4{margin:0;font-family:var(--serif);font-weight:700;color:var(--accent);font-size:17px}
+.pstep p{font-size:13.5px;color:var(--ink-2)}
+.care{margin-top:clamp(32px,5vw,48px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,48px);background:var(--accent-soft);border-radius:8px;padding:clamp(20px,3vw,32px)}
+@media (max-width:720px){.care{grid-template-columns:1fr}}
+.care h3{font-size:19px;margin-bottom:10px}
+.care p,.care li{font-size:14px;color:var(--ink-2)}
+.care ol{margin:0;padding-left:18px;display:grid;gap:4px}
+
+/* order */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);margin-bottom:clamp(32px,5vw,48px)}
+@media (max-width:720px){.tiers{grid-template-columns:1fr}}
+.tier{padding:26px 22px;display:grid;gap:8px;cursor:pointer;background:var(--paper);border:0;text-align:left;border-right:1px solid var(--line);position:relative}
+.tier:last-child{border-right:0}
+@media (max-width:720px){.tier{border-right:0;border-bottom:1px solid var(--line)}.tier:last-child{border-bottom:0}}
+.tier .name{font-family:var(--serif);font-size:18px}
+.tier .price{font-family:var(--serif);font-size:30px;font-weight:400;font-variant-numeric:tabular-nums}
+.tier .price small{font-size:13px;font-family:var(--sans);color:var(--mute);margin-right:4px}
+.tier .desc{font-size:13px;color:var(--mute)}
+.tier[aria-pressed="true"]{background:var(--accent-soft);box-shadow:inset 0 0 0 2px var(--accent)}
+.tier[aria-pressed="true"] .name{color:var(--accent);font-weight:700}
+.tier .pop{position:absolute;right:16px;top:16px}
+.order{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,48px)}
+@media (max-width:820px){.order{grid-template-columns:1fr}}
+.order form{display:grid;gap:18px;align-content:start}
+.order .input{font-size:16px;font-family:var(--sans)}
+textarea.input{resize:vertical;min-height:70px;border:1px solid var(--line);padding:10px}
+.summary{background:var(--paper);border:1px solid var(--line);padding:22px;display:grid;gap:12px;align-content:start;min-width:0}
+.summary pre{margin:0;white-space:pre-wrap;word-break:break-word;font-family:var(--sans);font-size:13.5px;line-height:1.8;color:var(--ink-2)}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.toast{font-size:13px;color:var(--accent);min-height:1.4em}
+
+[hidden]{display:none!important}
+.wrist{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,3vw,28px);margin-bottom:clamp(36px,5vw,56px)}
+@media (max-width:760px){.wrist{grid-template-columns:1fr}}
+.method{border:1px solid var(--line);border-radius:8px;padding:clamp(18px,3vw,26px);display:grid;grid-template-columns:1fr 150px;gap:16px;align-items:center;min-width:0}
+@media (max-width:420px){.method{grid-template-columns:1fr}}
+.method h3{display:inline-block;font-size:18px;border:1.5px solid var(--accent);border-radius:999px;padding:2px 18px;letter-spacing:.2em;margin-bottom:12px}
+.method ol{margin:0;padding-left:20px;display:grid;gap:6px;font-size:14.5px;color:var(--ink-2)}
+.method ol small{color:var(--mute)}
+.method img{width:100%;max-width:150px;height:auto;justify-self:center}
+.wrist-tip{grid-column:1/-1;background:var(--gold-soft);border-radius:8px;padding:14px 18px;font-size:14px}
+.wrist-tip b{color:var(--accent)}
+.kicker{justify-self:start;display:inline-block;border:1.5px solid var(--accent);border-radius:5px;padding:3px 12px;color:var(--accent)!important;font-weight:500;letter-spacing:.14em}
+
+.line-ic{width:1.25em;height:1.25em;flex:none}
+.line-btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:500;letter-spacing:.08em;border-radius:999px;padding:6px 14px;background:#06C755;color:#fff;font-size:13px}
+.line-btn .line-ic rect{fill:#fff}.line-btn .line-ic path:first-of-type{fill:#06C755}.line-btn .line-ic path:last-of-type{fill:#fff}
+.line-btn:hover{filter:brightness(.95)}
+.line-float{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;padding:12px 18px;font-size:14px;box-shadow:0 8px 22px -10px rgba(6,199,85,.7)}
+.btn.line{background:#06C755;border-color:#06C755;color:#fff}
+.btn.line:hover{filter:brightness(.95);background:#06C755}
+.btn.line .line-ic rect{fill:#fff}.btn.line .line-ic path:first-of-type{fill:#06C755}.btn.line .line-ic path:last-of-type{fill:#fff}
+.foot-line{display:flex;align-items:center;gap:10px}
+@media (max-width:760px){header.top .line-btn span{display:none}header.top .line-btn{padding:6px 8px}}
+
+.work .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.work .ph{aspect-ratio:1/1!important}
+.wtag{font-size:11px;font-weight:500;margin-left:8px;padding:1px 8px;border:1px solid var(--violet);color:#727391;border-radius:4px;vertical-align:2px}
+.wfilter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.wfilter button{border:1.5px solid var(--line);background:var(--paper);border-radius:999px;padding:5px 16px;font-size:13.5px;letter-spacing:.1em;cursor:pointer;color:var(--ink-2)}
+.wfilter button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff}
+.work .ph .match{position:absolute;right:10px;top:10px;z-index:1}
+
+.addon{border:1.5px dashed var(--gold);border-radius:8px;padding:14px 16px;background:var(--gold-soft)}
+.addon .toggle{color:var(--ink)}
+.addon small{color:var(--mute);font-size:12.5px}
+.addon b{color:var(--accent)}
+
+.energy-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.energy{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;border:1px solid var(--line);border-radius:8px;padding:20px 22px}
+.en-dot{width:28px;height:28px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08);margin-top:2px}
+.energy h4{margin:0 0 6px;font-weight:700;font-size:17px;color:var(--accent)}
+.en-kw{font-size:14.5px;color:var(--ink)}
+.en-note{font-size:12.5px;color:var(--mute);margin-top:8px}
+
+.w-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:2px}
+.w-no{font-size:12.5px;letter-spacing:.12em;color:var(--mute);font-variant-numeric:tabular-nums}
+.pick{border:1.5px solid var(--accent);background:var(--paper);color:var(--accent);border-radius:999px;padding:3px 14px;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.pick[aria-pressed="true"]{background:var(--accent);color:#fff}
+.work:has(.pick[aria-pressed="true"]) .ph{box-shadow:0 0 0 3px var(--gold)}
+.picked{display:flex;flex-wrap:wrap;gap:10px}
+.pk{position:relative;width:88px;display:grid;gap:4px;justify-items:center;font-size:12px;color:var(--ink-2)}
+.pk img{width:88px;height:88px;object-fit:cover;border-radius:8px}
+.pk button{position:absolute;top:-6px;right:-6px;width:22px;height:22px;border-radius:50%;border:0;background:var(--ink);color:#fff;cursor:pointer;line-height:22px;padding:0}
+.pk-empty{font-size:13px;color:var(--mute)}
+
+.badge.violet{background:var(--violet);color:#fff}
+
+.steps2{display:grid;gap:12px}
+.st{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"no body" "btn btn";gap:8px 14px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.st-no{grid-area:no;font-size:12px;font-weight:700;letter-spacing:.14em;color:#fff;background:var(--accent);border-radius:999px;padding:3px 12px}
+.st-body{grid-area:body;display:grid;gap:2px;min-width:0}
+.st-body b{font-size:15px;color:var(--ink)}
+.st-body small{font-size:12.5px;color:var(--mute)}
+.st .btn{grid-area:btn;width:100%}
+.st.ok{border-color:var(--accent);background:var(--accent-soft)}
+.st.ok .st-no{background:var(--gold);color:var(--ink)}
+.st.ok+.st{border-color:#06C755;box-shadow:0 0 0 3px rgba(6,199,85,.15)}
+
+.st3{grid-template-areas:"no body" "pay pay"}
+.pay,.pay-wait{grid-area:pay}
+.pay-tabs{display:flex;gap:6px;margin-bottom:12px}
+.pay-tabs button{flex:1;border:1.5px solid var(--line);background:var(--paper);border-radius:8px;padding:9px 8px;font-size:14px;font-weight:500;cursor:pointer;color:var(--ink-2);display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap}
+.pay-tabs button[aria-selected="true"]{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.applepay{display:inline-flex;align-items:center;background:#000;color:#fff;font-family:-apple-system,"SF Pro Text","Helvetica Neue",sans-serif;font-weight:600;font-size:11px;letter-spacing:.02em;border-radius:5px;padding:2px 7px;line-height:1.4}
+.applepay.light{background:#fff;color:#000}
+.pay-panel{display:grid;gap:10px}
+.pay-panel small{font-size:12.5px;color:var(--mute)}
+.pay-amt{font-size:14px;color:var(--ink-2)}
+.pay-amt{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pay-amt b{font-size:20px;color:var(--accent);margin-left:6px}
+.pay-panel .btn{grid-area:auto}
+.btn.card{background:#1d1d1f;border-color:#1d1d1f;color:#fff;width:100%}
+.btn.card:hover{background:#333}
+.bank{margin:0;display:grid;gap:0;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.bank div{display:grid;grid-template-columns:56px 1fr;gap:10px;padding:9px 12px;border-bottom:1px solid var(--line);align-items:center}
+.bank div:last-child{border-bottom:0}
+.bank dt{font-size:12.5px;color:var(--mute)}
+.bank dd{margin:0;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.bank b{color:var(--accent)}
+.mini{border:1px solid var(--accent);background:var(--paper);color:var(--accent);border-radius:999px;padding:1px 10px;font-size:12px;cursor:pointer}
+.pay-wait{font-size:13.5px;background:var(--gold-soft);border-radius:8px;padding:10px 12px;color:var(--ink)}
+
+.px-price{display:block;margin-top:8px;padding:8px 10px;background:var(--paper);border-radius:6px;font-size:13px;color:var(--ink-2);line-height:1.7}
+.px-price b{color:var(--accent)}
+
+#stInv .btn{grid-area:btn;width:100%}
+
+.opt3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.opt3.two{grid-template-columns:repeat(2,1fr);max-width:66%}
+@media (max-width:520px){.opt3.two{max-width:100%}}
+.opt{border:1.5px solid var(--line);background:var(--paper);border-radius:10px;padding:8px;display:grid;gap:4px;justify-items:center;cursor:pointer;text-align:center;min-width:0}
+.opt img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;display:block}
+.opt b{font-size:14px;color:var(--ink)}
+.opt small{font-size:12px;color:var(--mute)}
+.opt[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent);background:var(--accent-soft)}
+.opt[aria-pressed="true"] b{color:var(--accent)}
+.charms{width:100%;height:auto;border-radius:8px;border:1px solid var(--line)}
+
+footer{padding-block:48px 64px;font-size:12.5px;color:var(--mute)}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer .brand{color:var(--ink)}
+
+@media (prefers-reduced-motion:no-preference){
+  .reveal{animation:rise .6s ease both}
+  @keyframes rise{from{transform:translateY(8px)}to{transform:none}}
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#calc"><svg class="spark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0c.6 6.4 5.6 11.4 12 12-6.4.6-11.4 5.6-12 12-.6-6.4-5.6-11.4-12-12C6.4 11.4 11.4 6.4 12 0z"/></svg>YEHCHING YU <small></small></a>
+    <nav class="menu" aria-label="主選單">
+      <a href="#result">解析｜READING</a>
+      <a href="#missing">缺數｜ENERGY</a>
+      <a href="#crystal">水晶｜CRYSTAL</a>
+      <a href="#works">作品｜WORKS</a>
+      <a href="#process">流程｜PROCESS</a>
+      <a href="#order">下單｜ORDER</a>
+    </nav>
+    <a class="line-btn" href="https://www.instagram.com/p/DGqUabDz5hE2vqI47BZWYrD4H6TJolSI1RIRJQ0/?obrf=MTZzdHFpYzNvOWVueQ==" target="_blank" rel="noopener"><svg class="line-ic" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#06C755"/><path fill="#fff" d="M12 5.2c-4.2 0-7.6 2.7-7.6 6.1 0 3 2.7 5.5 6.4 6 .3.1.6.2.7.4.1.2.1.5 0 .7l-.1.7c0 .2-.2.8.7.4s4.8-2.8 6.5-4.8c1.2-1.3 1.7-2.6 1.7-3.9 0-3.4-3.4-6.1-7.6-6.1z"/><path fill="#06C755" d="M8 9.6h.7v2.8h1.5v.6H8zm2.8 0h.7V13h-.7zm1.4 0h.6l1.5 2.1V9.6h.7V13h-.6l-1.5-2.1V13h-.7zm3.3 0h2.2v.6H16v.8h1.5v.6H16v.8h1.6v.6h-2.3z"/></svg><span>加入官方 LINE</span></a>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="calc">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow kicker"><b>Find your missing number</b>｜自助計算</p>
+      <h1>先找到你<mark>缺少的數字</mark>，<br>再戴上補齊它的水晶。</h1>
+      <p class="lead">輸入國曆生日，看你的生命靈數、九宮格連線與先天缺數。想更認識自己，可以再加算農曆，看後天在生活裡慢慢少掉的那一塊。算完直接看適合你的水晶，喜歡就下單，小葉幫你手工串一條。</p>
+      <div class="hero-steps"><span>輸入生日</span><span>靈數解析</span><span>缺數能量</span><span>對應水晶</span><span>下單</span></div>
+    </div>
+    <form class="calc" id="calcForm" novalidate>
+      <h3>西元出生年月日</h3>
+      <div class="field">
+        <label for="y">國曆生日（先天）</label>
+        <div class="date-row">
+          <input class="input num" id="y" inputmode="numeric" maxlength="4" placeholder="1999" aria-label="年" value="1999">
+          <select class="input" id="m" aria-label="月"></select>
+          <select class="input" id="d" aria-label="日"></select>
+        </div>
+      </div>
+      <label class="toggle"><input type="checkbox" id="useLunar"> <span>進階：同時計算農曆（後天缺數）<br><small style="color:var(--mute)">國曆看先天帶來的缺數，農曆看後天環境養成的缺數</small></span></label>
+      <div class="lunar-box" id="lunarBox" hidden>
+        <div class="field">
+          <label for="ly">農曆生日（已依國曆自動換算，可自行修改）</label>
+          <div class="date-row">
+            <input class="input num" id="ly" inputmode="numeric" maxlength="4" aria-label="農曆年">
+            <select class="input" id="lm" aria-label="農曆月"></select>
+            <select class="input" id="ld" aria-label="農曆日"></select>
+          </div>
+        </div>
+        <p class="hint" id="lunarHint">閏月以該月數字計算。星座數沿用國曆生日的星座。</p>
+      </div>
+      <p class="err" id="err" role="alert"></p>
+      <button class="btn" type="submit">開始計算 →</button>
+      <p class="eyebrow" id="sampleNote" style="letter-spacing:.1em">目前顯示範例：1999 / 03 / 13</p>
+    </form>
+  </div>
+</section>
+
+<section id="result">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><b>Reading</b>｜生命靈數解析</p>
+      <h2 id="resTitle">你的生命靈數</h2>
+    </div>
+    <div class="tabs" role="tablist" id="tabs" hidden>
+      <button role="tab" aria-selected="true" data-k="pre">國曆・先天</button>
+      <button role="tab" aria-selected="false" data-k="post">農曆・後天</button>
+    </div>
+    <div id="sheet"></div>
+  </div>
+</section>
+
+<section id="missing">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><b>Missing energy</b>｜缺數分析</p>
+      <h2 id="missTitle">你缺少的能量</h2>
+      <p>缺數，就是九宮格裡沒有被圈到、也沒有被連到的數字。它不是缺點，是這輩子比較需要練習、也最值得補起來的能量。</p>
+    </div>
+    <div class="miss-grid" id="missGrid"></div>
+  </div>
+</section>
+
+<section id="crystal">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><b>Energy match</b>｜補齊你的能量</p>
+      <h2>你需要補的能量</h2>
+      <p>每個缺數都有對應的顏色能量。晶種由小葉依你的缺數和當期庫存搭配，每條都不一樣，不開放指定單一晶種。</p>
+    </div>
+    <div class="preview">
+      <div><img class="pv-main" id="pvMain" alt="最接近你缺數配色的小葉手鍊作品" width="360" height="360"><div class="pv-thumbs" id="pvThumbs"></div><div class="w-meta" style="max-width:360px"><span class="w-no" id="pvCode"></span><button type="button" class="pick" id="pvPick">＋ 選這條</button></div></div>
+      <div>
+        <p class="eyebrow">Your match｜最接近你的作品</p>
+        <h3 id="palTitle">配色預覽</h3>
+        <p id="palText"></p>
+        <div class="chip-row" id="palChips" style="margin-top:14px"></div>
+      </div>
+    </div>
+    <div id="cryWrap"></div>
+  </div>
+</section>
+
+<section id="works">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><b>Works</b>｜作品展示</p>
+      <h2>小葉串過的靈數手鍊</h2>
+      <p>都是小葉手工串的實拍作品。標記「適合你」的，配色和你的缺數對得上。喜歡哪條就按「＋ 選這條」，編號會自動帶進訂單。晶種依當期庫存，小葉會做同色系的搭配。</p>
+    </div>
+    <div class="wfilter" id="worksFilter">
+      <button type="button" data-f="all" aria-pressed="true">全部</button>
+      <button type="button" data-f="match" aria-pressed="false">適合你</button>
+      <button type="button" data-f="pixiu" aria-pressed="false">貔貅款</button>
+      <button type="button" data-f="men" aria-pressed="false">男生款</button>
+    </div>
+    <div class="works" id="worksGrid"></div>
+    <div style="text-align:center;margin-top:28px"><button type="button" class="btn ghost" id="worksMore">看更多作品</button></div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><b>How it works</b>｜交付流程</p>
+      <h2>從算出缺數，到戴上手鍊</h2>
+    </div>
+    <div class="process">
+      <div class="pstep"><span class="no">STEP 01</span><h4>自助計算</h4><p>在這裡輸入生日，看自己的生命靈數、先天與後天缺數。</p></div>
+      <div class="pstep"><span class="no">STEP 02</span><h4>量手圍・送出</h4><p>照測量方式量好手圍、選方案，複製訂單內容傳給小葉，你的計算結果會一起帶過去。</p></div>
+      <div class="pstep"><span class="no">STEP 03</span><h4>小葉挑選晶種</h4><p>依你的缺數和當期庫存挑選同色系晶種，有需要會跟你討論。</p></div>
+      <div class="pstep"><span class="no">STEP 04</span><h4>手工串製</h4><p>依手圍一條一條手工串，完成後拍照給你確認。</p></div>
+      <div class="pstep"><span class="no">STEP 05</span><h4>消磁出貨</h4><p>附上消磁碎石與照顧說明一起寄出。收到後先消磁，再開始配戴。</p></div>
+    </div>
+    <div class="care">
+      <div>
+        <p class="eyebrow">Care｜收到手鍊之後</p>
+        <h3>讓能量開始認識你</h3>
+        <p>打開後把手鍊放在手心，感受一下能量。有些人會覺得頭暈、麻麻的，都屬於正常，代表這條水晶磁場很強，能量正在開始認識你。你也可以幫手鍊取一個可愛的名字。</p>
+      </div>
+      <div>
+        <p class="eyebrow">Cleansing｜消磁方式</p>
+        <ol>
+          <li>準備容器，把附上的水晶碎石倒進去，手鍊放進去至少 4 小時，消磁後就可以配戴。</li>
+          <li>每天至少消磁一遍。</li>
+          <li>睡覺時不建議配戴，水晶會吸收負能量。</li>
+          <li>可以碰水，洗完記得馬上用布完全擦乾。</li>
+        </ol>
+        <p style="margin-top:10px">有好消息，記得回來跟小葉回報。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="order">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><b>Order</b>｜下單</p>
+      <h2>訂製你的靈數手鍊</h2>
+      <p>選方案、填資料，下方會自動整理好你的訂單內容和計算結果。按「複製訂單內容」，再按「開啟 LINE 傳給小葉」貼上送出就完成了。</p>
+    </div>
+    <p class="cry-group-title" id="wrist">下單前，先量手圍</p>
+    <div class="wrist">
+      <div class="method">
+        <div><h3>皮尺測量法</h3>
+          <ol><li>準備軟布尺</li><li>繞手腕一圈<br><small>依照個人喜好戴的位置去測量</small></li><li>確認手圍大小<small>（數值可到小數點）</small></li></ol></div>
+        <img src="data:image/webp;base64,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" alt="用軟布尺繞手腕一圈，讀出 13.8 公分" width="330" height="310">
+      </div>
+      <div class="method">
+        <div><h3>紙張測量法</h3>
+          <ol><li>準備一張寬度 0.5 公分的紙</li><li>繞手腕一圈<br><small>依照個人喜好戴的位置去測量</small></li><li>交疊處用筆做個記號</li><li>將紙攤開後用尺測量數值</li><li>確認手圍大小<small>（數值可到小數點）</small></li></ol></div>
+        <img src="data:image/webp;base64,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" alt="用紙條繞手腕一圈，在交疊處用筆做記號" width="210" height="280">
+      </div>
+      <p class="wrist-tip"><b>填寫方式：</b>量到的數字直接填在下方「手圍」，例如 13.8，不用自己加鬆度，小葉會依晶種大小調整。</p>
+    </div>
+    <div class="tiers" id="tiers"></div>
+    <div class="order">
+      <form id="orderForm" novalidate>
+        <div class="field"><label for="oname">姓名 / 暱稱</label><input class="input" id="oname" autocomplete="name" placeholder="例：小美"></div>
+        <div class="field"><label for="owrist">手圍（公分）</label><input class="input num" id="owrist" inputmode="decimal" placeholder="例：13.8"><small style="color:var(--mute);font-size:12.5px">還沒量？看上方 <a href="#wrist">手圍測量方式</a>，數值可到小數點。</small></div>
+        <div class="field"><label>喜歡的作品（選填，最多 3 條）</label><div class="picked" id="pickedBox"></div></div>
+        <div class="field"><label>手鍊款式</label>
+          <div class="opt3" id="optStyle">
+            <button type="button" class="opt" data-v="A" aria-pressed="true"><img src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20360%22%3E%3Crect%20width%3D%22360%22%20height%3D%22360%22%20fill%3D%22%23edf1f0%22%2F%3E%3Ctext%20x%3D%22180%22%20y%3D%22200%22%20font-family%3D%22sans-serif%22%20font-size%3D%22120%22%20font-weight%3D%22700%22%20fill%3D%22%23688D81%22%20text-anchor%3D%22middle%22%3EA%3C%2Ftext%3E%3Ctext%20x%3D%22180%22%20y%3D%22260%22%20font-family%3D%22sans-serif%22%20font-size%3D%2226%22%20fill%3D%22%23688D81%22%20text-anchor%3D%22middle%22%3E%E8%A8%AD%E8%A8%88%E6%AC%BE%3C%2Ftext%3E%3C%2Fsvg%3E" alt="設計款加吊飾範例"><b>A 設計款</b><small>＋吊飾</small></button>
+            <button type="button" class="opt" data-v="B" aria-pressed="false"><img src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20360%22%3E%3Crect%20width%3D%22360%22%20height%3D%22360%22%20fill%3D%22%23edf1f0%22%2F%3E%3Ctext%20x%3D%22180%22%20y%3D%22200%22%20font-family%3D%22sans-serif%22%20font-size%3D%22120%22%20font-weight%3D%22700%22%20fill%3D%22%23688D81%22%20text-anchor%3D%22middle%22%3EB%3C%2Ftext%3E%3Ctext%20x%3D%22180%22%20y%3D%22260%22%20font-family%3D%22sans-serif%22%20font-size%3D%2226%22%20fill%3D%22%23688D81%22%20text-anchor%3D%22middle%22%3E%E8%A8%AD%E8%A8%88%E6%AC%BE%3C%2Ftext%3E%3C%2Fsvg%3E" alt="設計款不加吊墜範例"><b>B 設計款</b><small>不加吊墜</small></button>
+            <button type="button" class="opt" data-v="C" aria-pressed="false"><img src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20360%22%3E%3Crect%20width%3D%22360%22%20height%3D%22360%22%20fill%3D%22%23edf1f0%22%2F%3E%3Ctext%20x%3D%22180%22%20y%3D%22200%22%20font-family%3D%22sans-serif%22%20font-size%3D%22120%22%20font-weight%3D%22700%22%20fill%3D%22%23688D81%22%20text-anchor%3D%22middle%22%3EC%3C%2Ftext%3E%3Ctext%20x%3D%22180%22%20y%3D%22260%22%20font-family%3D%22sans-serif%22%20font-size%3D%2226%22%20fill%3D%22%23688D81%22%20text-anchor%3D%22middle%22%3E%E7%94%B7%E6%AC%BE%3C%2Ftext%3E%3C%2Fsvg%3E" alt="男款範例"><b>C 男款</b><small>都不加</small></button>
+          </div>
+        </div>
+        <div class="field" id="fSpacer"><label>隔珠顏色</label>
+          <div class="opt3 two" id="optSpacer">
+            <button type="button" class="opt" data-v="銀色" aria-pressed="false"><img src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20360%22%3E%3Crect%20width%3D%22360%22%20height%3D%22360%22%20fill%3D%22%23edf1f0%22%2F%3E%3Ctext%20x%3D%22180%22%20y%3D%22200%22%20font-family%3D%22sans-serif%22%20font-size%3D%22120%22%20font-weight%3D%22700%22%20fill%3D%22%23688D81%22%20text-anchor%3D%22middle%22%3E01%3C%2Ftext%3E%3Ctext%20x%3D%22180%22%20y%3D%22260%22%20font-family%3D%22sans-serif%22%20font-size%3D%2226%22%20fill%3D%22%23688D81%22%20text-anchor%3D%22middle%22%3E%E9%8A%80%E8%89%B2%E9%9A%94%E7%8F%A0%3C%2Ftext%3E%3C%2Fsvg%3E" alt="銀色隔珠範例"><b>01 銀色隔珠</b><small>清透、低調</small></button>
+            <button type="button" class="opt" data-v="金色" aria-pressed="true"><img src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20360%22%3E%3Crect%20width%3D%22360%22%20height%3D%22360%22%20fill%3D%22%23edf1f0%22%2F%3E%3Ctext%20x%3D%22180%22%20y%3D%22200%22%20font-family%3D%22sans-serif%22%20font-size%3D%22120%22%20font-weight%3D%22700%22%20fill%3D%22%23688D81%22%20text-anchor%3D%22middle%22%3E02%3C%2Ftext%3E%3Ctext%20x%3D%22180%22%20y%3D%22260%22%20font-family%3D%22sans-serif%22%20font-size%3D%2226%22%20fill%3D%22%23688D81%22%20text-anchor%3D%22middle%22%3E%E9%87%91%E8%89%B2%E9%9A%94%E7%8F%A0%3C%2Ftext%3E%3C%2Fsvg%3E" alt="金色隔珠範例"><b>02 金色隔珠</b><small>溫暖、亮眼</small></button>
+          </div>
+        </div>
+        <div class="field" id="fCharm"><label for="ocharm">吊飾款式</label>
+          <img class="charms" src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20360%22%3E%3Crect%20width%3D%22360%22%20height%3D%22360%22%20fill%3D%22%23edf1f0%22%2F%3E%3Ctext%20x%3D%22180%22%20y%3D%22200%22%20font-family%3D%22sans-serif%22%20font-size%3D%22120%22%20font-weight%3D%22700%22%20fill%3D%22%23688D81%22%20text-anchor%3D%22middle%22%3E%3C%2Ftext%3E%3Ctext%20x%3D%22180%22%20y%3D%22260%22%20font-family%3D%22sans-serif%22%20font-size%3D%2226%22%20fill%3D%22%23688D81%22%20text-anchor%3D%22middle%22%3E%3C%2Ftext%3E%3C%2Fsvg%3E" alt="26 款吊飾，每款標有編號" width="627" height="525">
+          <select class="input" id="ocharm"><option value="">交給小葉挑</option></select>
+          <small style="color:var(--mute);font-size:12.5px">照片上的綠色數字就是吊飾編號，選一個喜歡的；不確定就交給小葉挑。</small>
+        </div>
+        <div class="field addon" id="fPixiu">
+          <label class="toggle" for="opixiu"><input type="checkbox" id="opixiu"> <span><b>加購貔貅</b>　<span id="pixiuPriceLabel"></span><br><small>每隻貔貅的神情、色澤都不一樣。小葉會在 LINE 傳幾款給你，讓你挑一隻跟你有緣分的，串在你的靈數手鍊上。可以先看看作品區的 <a href="#works" id="pixiuLink">貔貅款</a>。</small><span class="px-price">計價方式：貔貅尺寸（mm）× NT$60<br>例：10mm 貔貅 ＝ 10 × 60 ＝ <b>NT$600</b></span></span></label>
+        </div>
+        <div class="field"><label for="onote">備註（想加強的方向、顏色喜好）</label><textarea class="input" id="onote" placeholder="例：想加強財運、希望顏色淡一點"></textarea></div>
+      </form>
+      <div class="summary">
+        <p class="eyebrow">Order summary｜訂單內容</p>
+        <pre id="orderText"></pre>
+        <div class="steps2">
+          <div class="st st3" id="st3">
+            <span class="st-no">STEP 1</span>
+            <div class="st-body"><b>先完成付款</b><small id="payHint"></small></div>
+            <div class="pay" id="payBox">
+              <div class="pay-tabs" role="tablist">
+                <button type="button" role="tab" aria-selected="true" data-p="card">信用卡 <span class="applepay">Apple Pay</span></button>
+                <button type="button" role="tab" aria-selected="false" data-p="bank">銀行轉帳</button>
+              </div>
+              <div class="pay-panel" id="payCard">
+                <p class="pay-amt">付款金額 <b id="amtCard"></b> <button type="button" class="mini" id="copyAmtCard">複製</button></p>
+                <a class="btn card" href="#" target="_blank" rel="noopener" id="cardBtn">前往刷卡付款 <span class="applepay light">Apple Pay</span></a>
+                <small>安全付款頁，可用信用卡付款。付款完成後請截圖，最後一步一起傳給小葉。</small>
+              </div>
+              <div class="pay-panel" id="payBank" hidden>
+                <dl class="bank">
+                  <div><dt>銀行</dt><dd id="bkName"></dd></div>
+                  <div><dt>帳號</dt><dd><span id="bkAcc" class="num"></span> <button type="button" class="mini" id="copyAcc">複製</button></dd></div>
+                  <div><dt>戶名</dt><dd id="bkHolder"></dd></div>
+                  <div><dt>金額</dt><dd><b id="amtBank" class="num"></b> <button type="button" class="mini" id="copyAmt">複製</button></dd></div>
+                </dl>
+                <small>轉帳完成後，把帳號後五碼一起傳到 LINE。</small>
+              </div>
+            </div>
+            <p class="pay-wait" id="payWait" hidden>你有加購貔貅，這一步先跳過。直接做後面兩步 把訂單傳給小葉，小葉會在 LINE 傳幾款貔貅讓你挑，選到跟你有緣分的那一隻、確認總金額後再付款。</p>
+          </div>
+          <div class="st" id="stInv">
+            <span class="st-no">STEP 2</span>
+            <div class="st-body"><b>填寫發票資料</b><small id="invHint">付款後填寫表單，小葉會開立電子發票給你</small></div>
+            <a class="btn ghost" href="#" target="_blank" rel="noopener" id="invBtn">填寫發票資料表單 →</a>
+          </div>
+          <div class="st" id="st1">
+            <span class="st-no">STEP 3</span>
+            <div class="st-body"><b>複製訂單內容</b><small>付款完成後按一下，訂單、計算結果和付款資訊就複製好了</small></div>
+            <button class="btn" type="button" id="copyBtn">複製訂單內容</button>
+          </div>
+          <div class="st" id="st2">
+            <span class="st-no">STEP 4</span>
+            <div class="st-body"><b>開啟 LINE 貼給小葉確認</b><small>在小葉官方 LINE 聊天室長按輸入框「貼上」送出，刷卡的話再附上付款截圖，小葉確認後就開始製作</small></div>
+            <a class="btn line" id="lineBtn" href="https://www.instagram.com/p/DGqUabDz5hE2vqI47BZWYrD4H6TJolSI1RIRJQ0/?obrf=MTZzdHFpYzNvOWVueQ==" target="_blank" rel="noopener"><svg class="line-ic" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#06C755"/><path fill="#fff" d="M12 5.2c-4.2 0-7.6 2.7-7.6 6.1 0 3 2.7 5.5 6.4 6 .3.1.6.2.7.4.1.2.1.5 0 .7l-.1.7c0 .2-.2.8.7.4s4.8-2.8 6.5-4.8c1.2-1.3 1.7-2.6 1.7-3.9 0-3.4-3.4-6.1-7.6-6.1z"/><path fill="#06C755" d="M8 9.6h.7v2.8h1.5v.6H8zm2.8 0h.7V13h-.7zm1.4 0h.6l1.5 2.1V9.6h.7V13h-.6l-1.5-2.1V13h-.7zm3.3 0h2.2v.6H16v.8h1.5v.6H16v.8h1.6v.6h-2.3z"/></svg>開啟 LINE 傳給小葉</a>
+          </div>
+
+        </div>
+        <p class="toast" id="toast" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="brand"><svg class="spark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0c.6 6.4 5.6 11.4 12 12-6.4.6-11.4 5.6-12 12-.6-6.4-5.6-11.4-12-12C6.4 11.4 11.4 6.4 12 0z"/></svg>YEHCHING YU <small></small></span>
+    <span class="foot-line"><a class="line-btn" href="https://www.instagram.com/p/DGqUabDz5hE2vqI47BZWYrD4H6TJolSI1RIRJQ0/?obrf=MTZzdHFpYzNvOWVueQ==" target="_blank" rel="noopener"><svg class="line-ic" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#06C755"/><path fill="#fff" d="M12 5.2c-4.2 0-7.6 2.7-7.6 6.1 0 3 2.7 5.5 6.4 6 .3.1.6.2.7.4.1.2.1.5 0 .7l-.1.7c0 .2-.2.8.7.4s4.8-2.8 6.5-4.8c1.2-1.3 1.7-2.6 1.7-3.9 0-3.4-3.4-6.1-7.6-6.1z"/><path fill="#06C755" d="M8 9.6h.7v2.8h1.5v.6H8zm2.8 0h.7V13h-.7zm1.4 0h.6l1.5 2.1V9.6h.7V13h-.6l-1.5-2.1V13h-.7zm3.3 0h2.2v.6H16v.8h1.5v.6H16v.8h1.6v.6h-2.3z"/></svg><span>官方 LINE：有問題直接問小葉</span></a></span>
+    <span>小葉股份有限公司</span>
+  </div>
+</footer>
+<a class="line-btn line-float" href="https://www.instagram.com/p/DGqUabDz5hE2vqI47BZWYrD4H6TJolSI1RIRJQ0/?obrf=MTZzdHFpYzNvOWVueQ==" target="_blank" rel="noopener" aria-label="加入小葉官方 LINE"><svg class="line-ic" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#06C755"/><path fill="#fff" d="M12 5.2c-4.2 0-7.6 2.7-7.6 6.1 0 3 2.7 5.5 6.4 6 .3.1.6.2.7.4.1.2.1.5 0 .7l-.1.7c0 .2-.2.8.7.4s4.8-2.8 6.5-4.8c1.2-1.3 1.7-2.6 1.7-3.9 0-3.4-3.4-6.1-7.6-6.1z"/><path fill="#06C755" d="M8 9.6h.7v2.8h1.5v.6H8zm2.8 0h.7V13h-.7zm1.4 0h.6l1.5 2.1V9.6h.7V13h-.6l-1.5-2.1V13h-.7zm3.3 0h2.2v.6H16v.8h1.5v.6H16v.8h1.6v.6h-2.3z"/></svg><span>LINE 諮詢</span></a>
+
+<script>
+/* ===== 可自行修改的設定 ===== */
+const CONFIG = {"lineUrl":"https://www.instagram.com/p/DGqUabDz5hE2vqI47BZWYrD4H6TJolSI1RIRJQ0/?obrf=MTZzdHFpYzNvOWVueQ==","cardUrl":"","applePay":false,"bank":{"code":"013","name":"第一銀行","account":"62557010203","holder":"葉0瑜"},"pixiuEnabled":true,"pixiuPrice":0,"charmCount":0,"charmImg":false,"tiers":[{"id":"basic","name":"入門款","price":2088,"desc":"第一條靈數手鍊"},{"id":"cp","name":"CP值套餐","price":2888,"desc":"最多人選擇","tag":"人氣推薦"},{"id":"premium","name":"尊貴款","price":3288,"desc":"高階晶種","tag":"一次補齊","tagStyle":"violet"}]};
+
+/* ===== 資料：數字 ===== */
+const COLOR = {1:"紅",2:"橙",3:"黃",4:"綠",5:"藍",6:"靛",7:"紫",8:"金粉",9:"白"};
+const HEX = n => getComputedStyle(document.documentElement).getPropertyValue("--n"+n).trim();
+const TRAIT = {1:"開創・獨立・領導",2:"同理・溝通・平衡",3:"創意・樂觀・社交",4:"穩定・務實・安全",5:"自由・嘗試・變化",6:"完美・付出・直覺",7:"敏銳・研究・神秘",8:"物質・權威・財富",9:"智慧・靈性・完美"};
+const ZODIAC = ["","牡羊座","金牛座","雙子座","巨蟹座","獅子座","處女座","天秤座","天蠍座","射手座","魔羯座","水瓶座","雙魚座"];
+
+const LIFE = {
+ 1:{t:"天生的領袖",p:"在自我的能力得到認同與自信，是天生領袖的條件。有自己的想法跟執行，創意點子非常多，有過人的膽識，勇於改變、也勇於嘗試。做重要決策比誰都迅速果斷，這也是1號人更容易成功的原因。做事效率高，很有主見，很獨立。",w:"真的不喜歡太笨、執行力差、不聽領導的人，有時會直接懶得溝通、放棄溝通。"},
+ 2:{t:"體貼的協調者",p:"天生體貼、善解人意，任何事情都很替他人著想，配合度很高。有敏銳的洞察力，能理解他人的情感和需要，願意花時間傾聽和支持。擅長溝通和協調，能促進良好的人際關係和團隊合作。",w:"有時非常猶豫不決，一件事情會思考選擇很久；太在乎別人不經意的玩笑，也是要注意的地方。"},
+ 3:{t:"行動派的創作者",p:"天生具有豐富的才華和創造力，五行屬火，做事非常有行動力，只要想做就會馬上去做。在多個領域都有出色表現，喜歡在人群中脫穎而出，展現自己獨特的一面，享受被關注和讚美的感覺。",w:"做事有時太衝動。感情裡非常投入浪漫，但放下一段感情，也是最快的。"},
+ 4:{t:"穩健的規劃者",p:"天生喜歡安全的感覺，喜歡實際、穩定、保守。邏輯清晰，很喜歡策畫事情，做事有自己的規律感。",w:"因為太保守穩定，不容易踏出習慣的圈子；感情上常缺乏安全感，一定要給滿滿的安全感。"},
+ 5:{t:"自由的冒險家",p:"自由是5號人的核心特質，喜歡隨心調整行動和計劃，不喜歡被束縛。願意嘗試新事物、探索未知，同時也有強烈的目標感和獨立性，會努力追求自己的夢想。有幽默感，能為身邊的人帶來歡樂，對朋友很誠懇。",w:"不喜歡被限制，計劃常隨心情改變，需要留意穩定度。"},
+ 6:{t:"追求完美的付出者",p:"要形容6號人，完美非常貼切。天生希望事情做到最好，直覺、敏感、有智慧。對人總是先為他人著想，不計較時間成本也想幫忙，是很熱心助人的數字，但主要是對熟人。",w:"比較挑剔、標準高，完美主義也容易帶來拖延跟推託。"},
+ 7:{t:"一眼看穿本質的探索者",p:"天生直覺強，一眼就能看穿事情的本質，預測事情的發展。對知識和真相有強烈的求知慾，喜歡分析問題、追求答案，不斷學習和探索。",w:"有時太過懷疑，解不開的謎題會讓你很想完成，容易熬夜、甚至睡不著。"},
+ 8:{t:"最有責任心的領導者",p:"最有責任心，願意承擔責任，也天生喜歡幫助他人。決定要做的事總會全力以赴，有強大的決心和毅力，能克服各種困難。",w:"身上扛太多別人的責任，容易給自己壓力。要學會放輕鬆，你已經是最優秀的那個人了。"},
+ 9:{t:"最容易被看見的慈悲者",p:"非常愛幫助他人，個性溫和、本性善良。成功與努力的過程最容易被看見，只要保持努力，有一天一定會被看見。隨機應變能力高，靈性與慈悲是所有數字最高的，有高強度的直覺。",w:"太想幫人，容易把別人的事放在自己前面。"}
+};
+
+const MISS = {
+ 1:{kw:"學習獨立，自己站穩腳步",p:"常遇到自己的意見與他人需求不同，需要經過一番掙扎才了解自己的意志力。要堅持、信賴自己的判斷，別盲目從眾。走過試煉之後，會發展出最具原創性的自我。",dir:"自己才是掌握未來方向的人",post:"成長過程中比較少被鼓勵自己做主，習慣聽別人的安排。後天要練習替自己做決定，不再等別人點頭。"},
+ 2:{kw:"溝通、合作、協調",p:"喜歡眼見為憑，但容易過度壓抑自我，緊張時會恐懼、缺少自信、需要陪伴感，常不知道怎麼與人對談，小劇場一堆。補上2，溝通會更順利、更有自信。",dir:"試著讓自己不要這麼敏銳",post:"環境讓你習慣把感受收起來，開口前先想很多、容易腦補。後天要練習直接說出自己的需要。"},
+ 3:{kw:"行動力、創意、表達",p:"經常缺乏行動、活力、想法，做事前會先否定自己，對自己很嚴苛，反而隱藏內心的情感。補齊3號能量，執行力更好，事業上會有更多想法與創造力。",dir:"不要太快責怪自己，對自我寬鬆一點",post:"後天養成了先否定自己的習慣，想法很多卻不敢表現。後天要多肯定自己，讓創意有機會被做出來。"},
+ 4:{kw:"紀律、財庫、穩定",p:"通常缺乏紀律感，會間接影響身材、財庫、荷包，花錢、飲食、消費容易失控。補上4號能增加穩定、更好存錢、更好控制身材，也能建立穩固的感情關係，減少不安全感。",dir:"不要對自己太好，開始自我控制",post:"生活節奏和金錢管理容易被外在打亂，花錢、飲食比較難自律。後天要替自己建立固定的規律。"},
+ 5:{kw:"勇氣、目標、方向感",p:"常感受到沒有自我目標，找不到方向，很難跨出舒適圈。其實嘗試過，但總在最後關鍵時刻退縮那一步。補上5號，增加勇氣、目標感與方向感。",dir:"成為那個控制人生方向盤的人",post:"一路的經歷讓你變得保守，關鍵時刻容易退縮。後天要練習一次跨出一小步，把方向盤拿回來。"},
+ 6:{kw:"自我察覺、明確的付出",p:"想讓事情圓滑漂亮地結束，但常不符合預期，失望感轉成責怪自己；有追求完美的特質，也容易拖延。對熟人很好，有時好到盲目，容易被當成濫好人、不知不覺被利用。",dir:"善待朋友，也要審視自我察覺",post:"人際裡容易對熟人付出太多、忽略自己，事情也容易拖著。後天要先照顧好自己，再決定要對誰好。"},
+ 7:{kw:"貴人、智慧、人生捷徑",p:"凡事憑自己的努力，腳踏實地，給人誠懇、單純、好親近的感覺，職場上也很勤勞。但在尋求智慧和指導上較困難，可能缺乏貴人出現而錯過機會。補7號能增加貴人運，找到更多人生捷徑。",dir:"一定要善用貴人之力",post:"一路多半靠自己硬撐，比較少遇到人指點。後天要主動開口求助，讓貴人有機會出現。"},
+ 8:{kw:"滿足感、財力、收入",p:"會有些匱乏感，金錢、物質上的缺乏感比較明顯。事情都往心裡放，真正的心裡話不容易說出口，壓力大、情緒壓抑。補上8號能讓滿足感慢慢提升，也補到財力與收入。",dir:"你是最棒的人生領導者，但切記要懂得滿足",post:"現實壓力讓你容易覺得不夠，心事都往裡放。後天要練習感受「已經擁有」，讓財富感流動起來。"},
+ 9:{kw:"專注、精神力、被看見",p:"常感受到努力不被看見，明明拚盡全力，別人還是覺得你沒做到，成果和過程容易被忽略。也容易打不起精神、注意力分散。補9號能提升專注，讓成功的機會被看見。",dir:"你遲早有天會成功的",post:"努力常常沒被看見，精神容易分散疲累。後天要找回專注，把成果放到別人看得到的地方。"}
+};
+
+const LINES = {
+ "24":["靈巧變通線","也叫詭詐線。應變能力強、能舉一反三、見機行事。"],
+ "68":["親切誠實線","樂於幫助他人解決問題，完成生意，適合服務業。"],
+ "48":["工作模範線","工作負責、努力持家，給我錢錢其餘免談。"],
+ "26":["公平待人線","具平等心、善平衡、互動性強、善用助力，凡事要求合理、公平。"],
+ "159":["工作狂線","不工作就渾身不對勁，甚至會有負罪感。"],
+ "369":["智慧線","善於表達內在、有智慧的理解能力，常替人出頭出主意。"],
+ "123":["藝術線","設計師常有這個特質。若不是創作型，就是鑑賞家、顏控。"],
+ "258":["情緒線","感情豐富、善表達，心裡想的都希望能表達出來，心直口快。"],
+ "147":["務實線","不喜歡鋪張浪費，A面用完會重複利用B面。追求生活上經濟穩定，又叫拜金線，充滿精力與勇氣來衝鋒陷陣。"],
+ "456":["完美主義線","自我要求標準極高，100分的事情硬要做到200分。組織能力強、做事標準高，善於解決問題，確保品質和乾淨。"],
+ "789":["貴人線","容易有貴人提攜、順風順水，大鳴大放的機會總比別人多一點，追求權力。"],
+ "357":["影響線／人緣線","善表達、溝通力強、受人歡迎，看得穿別人真正的需要，能用容易的方式呈現事物。團體裡的交際花、八卦王，好奇心重，易招小人。"]
+};
+const LINE_ORDER = ["123","456","789","147","258","369","159","357","24","26","48","68"];
+
+/* ===== 資料：水晶 ===== */
+const CRYSTALS = [
+ {n:"石榴石",fit:[1]},{n:"草莓晶",fit:[1]},
+ {n:"尖晶石",fit:[1],ch:"海底輪",e:["帶來勇氣、信心，克服困境、追求夢想","保護身體健康、諸事平安","提高專注力"]},
+ {n:"太陽石",fit:[2]},{n:"阿魯沙",fit:[2]},{n:"琥珀",fit:[2]},
+ {n:"橙月光",fit:[2,8],ch:"臍輪",e:["招財、招貴人","增強體力","緩和情緒及消除壓力"]},
+ {n:"黃玉",fit:[3],ch:"太陽神經叢",e:["招財納運，促進事業繁盛","消除負面情緒，積極樂觀","避邪護身、保平安"]},
+ {n:"黃水晶",fit:[3],ch:"太陽神經叢",e:["吸引財富和豐盛","促進情緒平衡、身體健康","提升智慧、溝通能力"]},
+ {n:"鈦晶",fit:[3,8],ch:"太陽神經叢",e:["吸引正財、增強偏財","提升事業運、決策能力","避邪、防小人"]},
+ {n:"紫黃晶",fit:[3,7],ch:"太陽神經叢・頂輪",e:["招偏財，增進財運","增健康運","調和複雜人際，增強人緣及愛情運"]},
+ {n:"藍晶石",fit:[3,5,6],ch:"喉輪・太陽神經叢・眉心輪",e:["增加溝通表達能力","內心平靜、放鬆","增加直覺力、洞察力、創造力"]},
+ {n:"藍絨晶",fit:[3,5,6],ch:"喉輪・太陽神經叢・眉心輪",e:["擺脫負面思想","提升溝通及表達能力","增加自信和行動力"]},
+ {n:"藍紋石",fit:[3,5,8],ch:"喉輪・眉心輪",e:["智慧與專注力提升","增進表達力與人際關係","促進健康與免疫力"]},
+ {n:"綠水晶",fit:[4]},{n:"土耳其綠",fit:[4]},
+ {n:"粉晶",fit:[4,8],ch:"心輪",e:["招桃花","開展事業","增加好人緣，改善人際關係","舒緩焦慮、緊張、煩躁情緒"]},
+ {n:"葡萄石",fit:[4],ch:"心輪",e:["招正財運","釋放壓力和痛苦","帶來希望"]},
+ {n:"綠紋石",fit:[4],ch:"心輪",e:["情感療癒","增加熱情和動力","提升財富及自信"]},
+ {n:"天河石",fit:[4,5],ch:"心輪・喉輪",e:["智慧和洞察力提升","提高創造力和溝通能力","平衡身心靈及淨化能量"]},
+ {n:"海藍寶",fit:[5],ch:"喉輪",e:["增加溝通及表達能力","提升自信與活力","平衡磁場與保護能量"]},
+ {n:"藍托帕",fit:[5],ch:"喉輪",e:["增加思維和溝通能力","平衡情緒，舒緩壓力","消解疲勞，改善失眠"]},
+ {n:"藍玉髓",fit:[5],ch:"喉輪",e:["增強表達及溝通能力","舒緩緊張、焦慮、壓力","防小人，驅邪避煞"]},
+ {n:"藍寶石",fit:[5]},
+ {n:"堇青石",fit:[6],ch:"眉心輪",e:["舒緩焦慮、帶來身心靈平衡","調整人際關係，建立良好溝通","增加洞察力與直覺"]},
+ {n:"丹泉石",fit:[6]},
+ {n:"藍月光",fit:[6,7],ch:"眉心輪・頂輪",e:["舒緩壓力和焦慮","加強魅力和愛情運","增強直覺和洞察力"]},
+ {n:"紫水晶",fit:[6,7],ch:"頂輪",e:["增強智慧、記憶力","增加貴人運","開發潛能、提升能力"]},
+ {n:"紫玉髓",fit:[7],ch:"頂輪",e:["增加靈性和感知力","去除雜訊、負擔","保平安、防意外"]},
+ {n:"薰衣草晶",fit:[7],ch:"頂輪",e:["釋放情緒壓力和憂慮","靜心安定、緩和浮躁","提升智慧和直覺力"]},
+ {n:"白水晶",fit:[9],ch:"頂輪",e:["清除負能量、避邪","靈性提升","提高專注力"]},
+ {n:"蛋白石",fit:[9]}
+];
+const ALLROUND = [
+ {n:"超七",ch:"全脈輪",e:["全方位功效：招財、健康、愛情運、好人緣、貴人運、防小人、消除負能量、提升工作和學習能力"]},
+ {n:"碧璽",ch:"全脈輪",e:["帶電，可調節人體平衡、暢通經絡","全方位功效：招財、健康、愛情運、好人緣、貴人運"]}
+];
+
+/* 作品 */
+const WORKS = [];
+
+/* ===== 計算 ===== */
+const reduce = n => { while(n>9) n = String(n).split("").reduce((a,b)=>a+ +b,0); return n; };
+function zodiacNo(m,d){
+  const starts=[[1,20,11],[2,19,12],[3,21,1],[4,20,2],[5,21,3],[6,22,4],[7,23,5],[8,23,6],[9,23,7],[10,24,8],[11,23,9],[12,22,10]];
+  const [,sd,n]=starts[m-1]; return d>=sd ? n : (n===1?12:n-1);
+}
+function compute(y,m,d,zm,zd){
+  const s = String(y)+String(m).padStart(2,"0")+String(d).padStart(2,"0");
+  const digits = s.split("").map(Number);
+  const sum = digits.reduce((a,b)=>a+b,0);
+  const talent = String(sum).split("").map(Number).filter(x=>x>0);
+  const life = reduce(sum), bday = reduce(d);
+  const z = zodiacNo(zm,zd), star = reduce(z);
+  const count = Array(10).fill(0);
+  digits.forEach(x=>count[x]++);
+  talent.forEach(x=>count[x]++);
+  count[life]++; count[bday]++; count[star]++;
+  const missing = [1,2,3,4,5,6,7,8,9].filter(n=>!count[n]);
+  const lines = LINE_ORDER.filter(l=>l.split("").every(c=>count[+c]>0));
+  return {y,m,d,s,digits,sum,talent,life,bday,z,star,count,missing,lines};
+}
+
+/* 農曆換算 */
+function toLunar(y,m,d){
+  try{
+    const f=new Intl.DateTimeFormat("en-u-ca-chinese",{year:"numeric",month:"numeric",day:"numeric",timeZone:"UTC"});
+    const p=f.formatToParts(new Date(Date.UTC(y,m-1,d,12)));
+    const g=t=>(p.find(x=>x.type===t)||{}).value;
+    const mo=g("month")||""; const yr=g("relatedYear")||g("year");
+    return {y:+yr,m:parseInt(mo,10),d:+g("day"),leap:/bis/.test(mo)};
+  }catch(e){return null}
+}
+
+/* ===== UI ===== */
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function fillSel(sel,max,val,pad){sel.innerHTML="";for(let i=1;i<=max;i++){const o=document.createElement("option");o.value=i;o.textContent=pad?String(i).padStart(2,"0"):i;if(i===val)o.selected=true;sel.appendChild(o);}}
+const dim=(y,m)=>new Date(y,m,0).getDate();
+
+fillSel($("m"),12,3,true); fillSel($("d"),31,13,true);
+fillSel($("lm"),12,1,true); fillSel($("ld"),30,1,true);
+function fixDays(){const y=+$("y").value||2000,m=+$("m").value,cur=+$("d").value;fillSel($("d"),dim(y,m),Math.min(cur,dim(y,m)),true);}
+$("m").addEventListener("change",()=>{fixDays();syncLunar();});
+$("y").addEventListener("input",()=>{fixDays();syncLunar();});
+$("d").addEventListener("change",syncLunar);
+function syncLunar(){
+  const y=+$("y").value,m=+$("m").value,d=+$("d").value;
+  if(!(y>=1900&&y<=2100))return;
+  const L=toLunar(y,m,d);
+  if(L&&L.y){$("ly").value=L.y;$("lm").value=L.m;$("ld").value=L.d;
+    $("lunarHint").textContent=`換算結果：農曆 ${L.y} 年 ${L.leap?"閏":""}${L.m} 月 ${L.d} 日。閏月以該月數字計算，星座數沿用國曆生日的星座。`;}
+  else $("lunarHint").textContent="這個瀏覽器無法自動換算，請手動填入農曆生日。星座數沿用國曆生日的星座。";
+}
+$("useLunar").addEventListener("change",e=>{$("lunarBox").hidden=!e.target.checked;if(e.target.checked)syncLunar();});
+
+let state={pre:null,post:null,view:"pre",tier:"cp"};
+
+$("calcForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const y=+$("y").value,m=+$("m").value,d=+$("d").value;
+  if(!(y>=1900&&y<=2100)){$("err").textContent="請輸入 1900 到 2100 之間的西元年份，例如 1999。";return;}
+  $("err").textContent="";
+  state.pre=compute(y,m,d,m,d);
+  state.post=null;
+  if($("useLunar").checked){
+    const ly=+$("ly").value,lm=+$("lm").value,ld=+$("ld").value;
+    if(ly>=1900&&ly<=2100) state.post=compute(ly,lm,ld,m,d);
+  }
+  state.view="pre";
+  $("sampleNote").textContent=`已計算：${y} / ${String(m).padStart(2,"0")} / ${String(d).padStart(2,"0")}${state.post?"（含農曆）":""}`;
+  renderAll();
+  document.getElementById("result").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
+});
+
+$("tabs").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;state.view=b.dataset.k;renderSheet();});
+
+/* 九宮格：左欄 1 2 3、中欄 4 5 6、右欄 7 8 9 */
+function gridSVG(r){
+  const pos=n=>{const c=Math.floor((n-1)/3),row=(n-1)%3;return[60+c*120,60+row*120];};
+  const ink="var(--ink)",line="var(--line)",acc="var(--accent)";
+  let s=`<svg viewBox="0 0 360 360" role="img" aria-label="九宮格，圈起來的是出現的數字，線條是成立的連線">`;
+  s+=`<rect x="0.5" y="0.5" width="359" height="359" fill="var(--paper)" stroke="${line}"/>`;
+  for(let i=1;i<3;i++){s+=`<line x1="${i*120}" y1="0" x2="${i*120}" y2="360" stroke="${line}"/><line x1="0" y1="${i*120}" x2="360" y2="${i*120}" stroke="${line}"/>`;}
+  r.lines.forEach(l=>{const a=pos(+l[0]),b=pos(+l[l.length-1]);s+=`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${acc}" stroke-width="1.5" opacity=".75"/>`;});
+  for(let n=1;n<=9;n++){
+    const [x,y]=pos(n),c=r.count[n],miss=!c;
+    for(let k=0;k<Math.min(c,4);k++){s+=`<circle cx="${x}" cy="${y}" r="${26+k*7}" fill="${k===0?"var(--paper)":"none"}" stroke="${ink}" stroke-width="${k===0?1.2:.8}"/>`;}
+    s+=`<text x="${x}" y="${y+10}" text-anchor="middle" font-family="Noto Sans TC,sans-serif" font-size="30" font-weight="400" fill="${miss?"var(--mute)":ink}">${n}</text>`;
+    if(miss)s+=`<text x="${x}" y="${y+40}" text-anchor="middle" font-family="Noto Sans TC,sans-serif" font-size="11" letter-spacing="2" fill="var(--n1)">缺</text>`;
+  }
+  return s+"</svg>";
+}
+
+function renderSheet(){
+  const post=state.view==="post"&&state.post;
+  const r=post?state.post:state.pre;
+  $("tabs").hidden=!state.post;
+  [...$("tabs").children].forEach(b=>b.setAttribute("aria-selected",b.dataset.k===state.view));
+  $("resTitle").textContent=`生命靈數 ${state.pre.life} 號・${LIFE[state.pre.life].t}`;
+  const plus=r.digits.map(x=>`<span>${x}</span>`).join(" + ");
+  const t=r.talent.join(" + ");
+  const L=LIFE[r.life];
+  $("sheet").innerHTML=`
+  <div class="worksheet reveal">
+    <div style="display:grid;gap:16px;align-content:start;min-width:0">
+      <p class="eyebrow">${post?"農曆生日":"西元生日"}：<b class="num">${r.y} / ${String(r.m).padStart(2,"0")} / ${String(r.d).padStart(2,"0")}</b></p>
+      <div class="step"><span class="eyebrow">步驟 1｜將生日的年月日加總</span><div class="sum-line num">${plus} <span class="eq">= ${r.sum}</span></div></div>
+      <div class="step"><span class="eyebrow">步驟 2｜相加到剩一個個位數</span><div class="sum-line num">${r.sum<10?r.sum:t} <span class="eq">= ${r.life}</span></div></div>
+      <div class="table">
+        <div><span class="k">生日數<small>${r.d} 日${r.d>9?"："+String(r.d).split("").join("+")+"="+reduce(r.d):""}</small></span><span class="v">${r.bday}</span></div>
+        <div><span class="k">天賦數<small>步驟 1 的兩位數</small></span><span class="v">${r.talent.join("、")}</span></div>
+        <div><span class="k">星座數<small>${ZODIAC[r.z]}${r.z>9?"："+r.z+" → "+r.star:""}</small></span><span class="v">${r.star}</span></div>
+        <div><span class="k">生命靈數<small>步驟 2</small></span><span class="v">${r.life}</span></div>
+        <div class="wide"><span class="k">${post?"後天空缺數":"先天空缺數"}</span><span class="v">${r.missing.length?r.missing.join("、"):"無缺數"}</span></div>
+      </div>
+    </div>
+    <div class="grid-wrap">${gridSVG(r)}<p class="legend">圈越多層＝該數字出現越多次｜線條＝依規則成立的連線｜灰字＝缺數</p></div>
+  </div>
+  ${post?"":`<div class="life reveal">
+    <div class="big num">${r.life}</div>
+    <div><p class="eyebrow">Life path｜${TRAIT[r.life]}｜代表色 ${COLOR[r.life]}</p><h3>${L.t}</h3><p>${L.p}</p><p class="weak"><b>弱勢　</b>${L.w}</p></div>
+  </div>`}
+  <div class="lines">
+    <p class="eyebrow" style="padding:18px 0 6px">Connections｜${post?"後天":"先天"}連線</p>
+    ${r.lines.length?r.lines.map(l=>`<div class="line-item"><span class="code num">${l}</span><div><h4>${LINES[l][0]}</h4><p>${LINES[l][1]}</p></div></div>`).join(""):`<p class="empty-note">這組生日沒有成立的連線。</p>`}
+  </div>`;
+}
+
+function missingUnion(){
+  const pre=state.pre.missing, post=state.post?state.post.missing:[];
+  const all=[...new Set([...pre,...post])].sort((a,b)=>a-b);
+  return {pre,post,all};
+}
+
+function renderMissing(){
+  const {pre,post,all}=missingUnion();
+  $("missTitle").textContent=all.length?`你缺少 ${all.join("、")} 的能量`:"你的九宮格沒有缺數";
+  if(!all.length){$("missGrid").innerHTML=`<div class="miss"><p class="kw">1 到 9 都有被圈到或連到。</p><p>可以挑選代表生命靈數 ${state.pre.life} 號的顏色（${COLOR[state.pre.life]}色），或是全方位的超七、碧璽，穩住整體能量。</p></div>`;return;}
+  $("missGrid").innerHTML=all.map(n=>{
+    const inPre=pre.includes(n),inPost=post.includes(n),M=MISS[n];
+    const tags=(inPre?`<span class="tag">先天</span>`:"")+(inPost?` <span class="tag post">後天</span>`:"");
+    return `<article class="miss reveal">
+      <div class="swatch" style="background:var(--n${n});${n===9?"outline:1px solid var(--n9-stroke)":""}"></div>
+      <div class="miss-top"><div class="miss-n"><b class="num">${n}</b><span>缺數・${COLOR[n]}色</span></div><div>${tags}</div></div>
+      <p class="kw">補上：${M.kw}</p>
+      ${inPre?`<p>${M.p}</p>`:""}
+      ${inPost?`<p class="post-note"><b>後天：</b>${M.post}</p>`:""}
+      <p class="dir"><b>關鍵方向　</b>${M.dir}</p>
+    </article>`;}).join("");
+}
+
+function beadCanvas(cv,nums,seed){
+  const ctx=cv.getContext("2d"),W=cv.width,R=W*0.36,cx=W/2,cy=W/2,count=20,br=W*0.058;
+  ctx.clearRect(0,0,W,W);
+  ctx.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue("--line").trim();ctx.lineWidth=W*0.004;
+  ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.stroke();
+  const cols=(nums.length?nums:[state.pre?state.pre.life:8]).map(HEX);
+  const pat=[];for(let i=0;i<count;i++)pat.push(cols[(i+(seed||0))%cols.length]);
+  pat.forEach((c,i)=>{
+    const a=i/count*Math.PI*2-Math.PI/2,x=cx+Math.cos(a)*R,y=cy+Math.sin(a)*R;
+    const g=ctx.createRadialGradient(x-br*.35,y-br*.35,br*.1,x,y,br);
+    g.addColorStop(0,"rgba(255,255,255,.85)");g.addColorStop(.35,c);g.addColorStop(1,c);
+    ctx.beginPath();ctx.arc(x,y,br,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
+    ctx.strokeStyle="rgba(0,0,0,.12)";ctx.lineWidth=1;ctx.stroke();
+  });
+}
+
+function renderCrystals(){
+  const {all}=missingUnion();
+  const miss=all.length?all:[state.pre.life];
+  const picks=WORKS.map((w,i)=>({w,i,m:w.fit.filter(n=>miss.includes(n)).length,x:w.fit.filter(n=>!miss.includes(n)).length})).sort((a,b)=>b.m-a.m||a.x-b.x||a.i-b.i).slice(0,4);
+  const show=k=>{window._pv&&(window._pv.cur=k);$("pvMain").src=picks[k].w.img;$("pvCode").textContent="No."+picks[k].w.code;renderPvPick();[...$("pvThumbs").children].forEach((b,j)=>b.setAttribute("aria-pressed",j===k));};
+  $("pvThumbs").innerHTML=picks.map((p,k)=>`<button type="button" aria-label="看第 ${k+1} 條作品" aria-pressed="${k===0}"><img src="${p.w.img}" alt=""></button>`).join("");
+  [...$("pvThumbs").children].forEach((b,k)=>b.addEventListener("click",()=>show(k)));
+  window._pv={picks,cur:0};
+  const _show=show;
+  if(picks.length)show(0);else $("pvMain").parentNode.hidden=true;
+  $("palTitle").textContent=`${miss.map(n=>COLOR[n]).join(" × ")} 的手鍊`;
+  $("palText").textContent=all.length?`建議配色依缺數 ${all.join("、")} 組合，照片是配色最接近你的實拍作品，點小圖可以換著看。實際晶種與比例由小葉依你的狀況再調整。`:`沒有缺數，建議以生命靈數 ${state.pre.life} 號的${COLOR[state.pre.life]}色為主調。`;
+  $("palChips").innerHTML=miss.map(n=>`<span class="chip"><span class="dot" style="background:var(--n${n});border-color:var(--n9-stroke)"></span>${n}・${COLOR[n]}色</span>`).join("");
+
+  const h=miss.map(n=>{
+    const common=CRYSTALS.filter(c=>c.e&&c.fit.includes(n)).slice(0,3).map(c=>c.n);
+    const kw=all.length?MISS[n].kw:TRAIT[n];
+    return `<article class="energy">
+      <span class="en-dot" style="background:var(--n${n})"></span>
+      <div><h4>補 ${n} 號・${COLOR[n]}色能量</h4>
+      <p class="en-kw">${kw}</p>
+      ${common.length?`<p class="en-note">常用晶種：${common.join("、")}（依當期庫存搭配）</p>`:`<p class="en-note">晶種依當期庫存搭配</p>`}</div>
+    </article>`;}).join("");
+  $("cryWrap").innerHTML=`<div class="energy-list">${h}</div>`;
+}
+
+let payMethod="card";
+let worksFilter="all",worksMore=false,picked=[];
+function togglePick(i){
+  const k=picked.indexOf(i);
+  if(k>=0)picked.splice(k,1);
+  else{if(picked.length>=3){$("toast").textContent="最多選 3 條喜歡的作品，可以先取消一條再選。";return;}picked.push(i);}
+  renderWorks();renderPicked();renderOrder();renderPvPick();
+}
+function renderPicked(){
+  $("pickedBox").innerHTML=picked.length?picked.map(i=>`<div class="pk"><img src="${WORKS[i].img}" alt=""><span>No.${WORKS[i].code}</span><button type="button" aria-label="取消 No.${WORKS[i].code}" data-i="${i}">×</button></div>`).join(""):`<p class="pk-empty">還沒選。到上方作品區按「＋ 選這條」，最多 3 條；沒選就交給小葉搭配。</p>`;
+}
+function renderWorks(){
+  const {all}=missingUnion();
+  let list=WORKS.map((w,i)=>({...w,i,m:w.fit.filter(n=>all.includes(n)).length})).sort((a,b)=>b.m-a.m||a.i-b.i);
+  if(worksFilter==="match")list=list.filter(w=>w.m);
+  else if(worksFilter!=="all")list=list.filter(w=>w.cat===worksFilter);
+  const shown=worksMore?list:list.slice(0,12);
+  $("worksGrid").innerHTML=shown.map(w=>`<figure class="work" style="margin:0">
+    <div class="ph">${w.m?`<span class="match badge">適合你</span>`:""}<img src="${w.img}" alt="小葉手工水晶手鍊作品，配色補 ${w.fit.join("、")}" loading="lazy" width="520" height="520"></div>
+    <div class="w-meta"><span class="w-no">No.${w.code}</span><button type="button" class="pick" data-i="${w.i}" aria-pressed="${picked.includes(w.i)}">${picked.includes(w.i)?"✓ 已選":"＋ 選這條"}</button></div>
+    <h4>補 ${w.fit.join("・")}${w.cat==="pixiu"?`<span class="wtag">貔貅款</span>`:w.cat==="men"?`<span class="wtag">男生款</span>`:""}</h4>
+    <p>${w.fit.map(n=>COLOR[n]+"色").join("・")}系</p></figure>`).join("")||`<p class="empty-note">這個分類目前沒有作品。</p>`;
+  $("worksMore").hidden=worksMore||list.length<=12;
+  $("worksMore").textContent=`看更多作品（共 ${list.length} 件）`;
+  [...$("worksFilter").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.f===worksFilter));
+}
+
+function renderTiers(){
+  $("tiers").innerHTML=CONFIG.tiers.map(t=>`<button type="button" class="tier" aria-pressed="${t.id===state.tier}" data-id="${t.id}">
+    ${t.tag?`<span class="pop badge ${t.tagStyle||""}">${t.tag}</span>`:""}<span class="name">${t.name}</span>
+    <span class="price num"><small>NT$</small>${t.price.toLocaleString()}</span><span class="desc">${t.desc}</span></button>`).join("");
+}
+$("tiers").addEventListener("click",e=>{const b=e.target.closest(".tier");if(!b)return;state.tier=b.dataset.id;renderTiers();renderOrder();});
+["oname","owrist","onote"].forEach(id=>$(id).addEventListener("input",renderOrder));
+$("opixiu").addEventListener("change",renderOrder);
+$("pixiuPriceLabel").textContent=CONFIG.pixiuPrice?`＋NT$${CONFIG.pixiuPrice.toLocaleString()}`:"（依尺寸計價，挑好款式後報價）";
+$("pixiuLink").addEventListener("click",()=>{worksFilter="pixiu";worksMore=false;renderWorks();});
+
+function orderText(){
+  const r=state.pre,t=CONFIG.tiers.find(x=>x.id===state.tier),{pre,post,all}=missingUnion();
+  const miss=all.length?all:[r.life];
+  const L=[
+    "【YEHCHING YU・訂單】",
+    `姓名：${$("oname").value.trim()||"（未填）"}`,
+    `手圍：${$("owrist").value.trim()?$("owrist").value.trim()+" cm":"（未填）"}`,
+    `方案：${t.name} NT$${t.price.toLocaleString()}`,
+    `款式：${styleV==="A"?"A 設計款（＋吊飾）":styleV==="B"?"B 設計款（不加吊墜）":"C 男款（都不加）"}`,
+    ...(styleV!=="C"?[`隔珠：${spacerV}`]:[]),
+    ...(styleV==="A"?[`吊飾：${$("ocharm").value?"No."+$("ocharm").value:"交給小葉挑"}`]:[]),
+    ...($("opixiu").checked?[`加購：貔貅${CONFIG.pixiuPrice?` NT$${CONFIG.pixiuPrice.toLocaleString()}`:"（等小葉傳款式，挑有緣分的那隻；費用＝尺寸 mm × NT$60）"}`]:[]),
+    `合計：NT$${(t.price+($("opixiu").checked?CONFIG.pixiuPrice:0)).toLocaleString()}${$("opixiu").checked&&!CONFIG.pixiuPrice?"＋貔貅另計":""}`,
+    "——",
+    `西元生日：${r.y}/${String(r.m).padStart(2,"0")}/${String(r.d).padStart(2,"0")}`,
+    `✧生命靈數：${r.life}`,
+    `✧天賦數：${r.talent.join("、")}｜生日數：${r.bday}｜星座數：${r.star}`,
+    `✧先天空缺數：${pre.length?pre.join("、"):"無"}`
+  ];
+  if(state.post){L.push(`農曆生日：${state.post.y}/${String(state.post.m).padStart(2,"0")}/${String(state.post.d).padStart(2,"0")}`);L.push(`✧後天空缺數：${post.length?post.join("、"):"無"}`);}
+  L.push(`✧建議配色：${miss.map(n=>COLOR[n]).join("、")}`);
+  L.splice(L.indexOf("——"),0,($("opixiu").checked&&!CONFIG.pixiuPrice)?"付款：挑好貔貅、確認總金額後再付款":payMethod==="card"?"付款：信用卡／Apple Pay（附截圖）":"付款：銀行轉帳（後五碼傳 LINE 告知）");
+  L.push(`✧喜歡的作品：${picked.length?picked.map(i=>"No."+WORKS[i].code).join("、"):"交給小葉搭配"}`);
+  if($("onote").value.trim())L.push("——","備註："+$("onote").value.trim());
+  return L.join("\n");
+}
+function renderOrder(){$("orderText").textContent=orderText();renderPay();if($("st1")&&$("st1").classList.contains("ok")){$("st1").classList.remove("ok");$("copyBtn").textContent="複製訂單內容";$("toast").textContent="訂單內容有更新，請重新複製一次。";}}
+$("copyBtn").addEventListener("click",()=>{
+  const txt=orderText();
+  const done=()=>{$("st1").classList.add("ok");$("copyBtn").textContent="✓ 已複製";$("toast").textContent="已複製！接著按 STEP 2 開啟 LINE 貼上送出。";};
+  const fallback=()=>{const r=document.createRange();r.selectNodeContents($("orderText"));const s=getSelection();s.removeAllRanges();s.addRange(r);$("toast").textContent="已幫你選取訂單內容，請按「複製」後貼到 LINE。";};
+  try{navigator.clipboard.writeText(txt).then(done,fallback);}catch(e){fallback();}
+});
+if(CONFIG.lineUrl){$("lineBtn").href=CONFIG.lineUrl;}else{$("lineBtn").hidden=true;}
+
+$("worksGrid").addEventListener("click",e=>{const b=e.target.closest(".pick");if(b)togglePick(+b.dataset.i);});
+$("pickedBox").addEventListener("click",e=>{const b=e.target.closest("button");if(b)togglePick(+b.dataset.i);});
+$("worksFilter").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;worksFilter=b.dataset.f;worksMore=false;renderWorks();});
+$("worksMore").addEventListener("click",()=>{worksMore=true;renderWorks();});
+function renderPvPick(){const pv=window._pv;if(!pv||!pv.picks[pv.cur])return;const i=pv.picks[pv.cur].i;const on=picked.includes(i);$("pvPick").setAttribute("aria-pressed",on);$("pvPick").textContent=on?"✓ 已選":"＋ 選這條";}
+$("pvPick").addEventListener("click",()=>{const pv=window._pv;togglePick(pv.picks[pv.cur].i);});
+
+/* 付款 */
+function orderTotal(){const t=CONFIG.tiers.find(x=>x.id===state.tier);return t.price+($("opixiu").checked?CONFIG.pixiuPrice:0);}
+function renderPay(){
+  const wait=$("opixiu").checked&&!CONFIG.pixiuPrice;
+  $("invHint").textContent=wait?"等挑好貔貅、完成付款後再填寫，小葉會開立電子發票給你":"付款後填寫表單，小葉會開立電子發票給你";
+  $("payBox").hidden=wait;$("payWait").hidden=!wait;
+  $("payHint").textContent=wait?"先挑一隻跟你有緣分的貔貅":"選信用卡或銀行轉帳，付完再進行下一步";
+  const amt="NT$"+orderTotal().toLocaleString();
+  $("amtCard").textContent=amt;$("amtBank").textContent=amt;
+}
+$("bkName").textContent=CONFIG.bank.code+" "+CONFIG.bank.name;$("bkAcc").textContent=CONFIG.bank.account;$("bkHolder").textContent=CONFIG.bank.holder;$("cardBtn").href=CONFIG.cardUrl;
+document.querySelector(".pay-tabs").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;[...b.parentNode.children].forEach(x=>x.setAttribute("aria-selected",x===b));payMethod=b.dataset.p;renderOrder();$("payCard").hidden=b.dataset.p!=="card";$("payBank").hidden=b.dataset.p!=="bank";});
+function copyText(txt,btn){const ok=()=>{const o=btn.textContent;btn.textContent="已複製";setTimeout(()=>btn.textContent=o,1500);};try{navigator.clipboard.writeText(txt).then(ok,()=>{});}catch(e){}}
+$("copyAcc").addEventListener("click",e=>copyText(CONFIG.bank.account,e.currentTarget));
+$("copyAmtCard").addEventListener("click",e=>copyText(String(orderTotal()),e.currentTarget));
+$("copyAmt").addEventListener("click",e=>copyText(String(orderTotal()),e.currentTarget));
+
+let styleV="A",spacerV="金色";
+function renderStyle(){
+  [...$("optStyle").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===styleV));
+  [...$("optSpacer").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===spacerV));
+  $("fSpacer").hidden=styleV==="C";$("fCharm").hidden=styleV!=="A";$("fPixiu").hidden=styleV==="C"||!CONFIG.pixiuEnabled;
+  if(styleV==="C"||!CONFIG.pixiuEnabled)$("opixiu").checked=false;
+}
+$("optStyle").addEventListener("click",e=>{const b=e.target.closest(".opt");if(!b)return;styleV=b.dataset.v;renderStyle();renderOrder();});
+$("optSpacer").addEventListener("click",e=>{const b=e.target.closest(".opt");if(!b)return;spacerV=b.dataset.v;renderStyle();renderOrder();});
+$("ocharm").addEventListener("change",renderOrder);
+
+/* 產生器設定開關 */
+if(!CONFIG.applePay)document.querySelectorAll(".applepay").forEach(e=>e.remove());
+(function(){const sel=$("ocharm");for(let i=1;i<=CONFIG.charmCount;i++){const o=document.createElement("option");o.value=i;o.textContent="No."+i;sel.appendChild(o);}
+ if(!CONFIG.charmCount||!CONFIG.charmImg){document.querySelector("#fCharm .charms").remove();sel.hidden=true;document.querySelector("#fCharm small").textContent="吊飾款式會在 LINE 跟小葉確認。";}})();
+document.querySelectorAll("img[data-empty]").forEach(e=>e.remove());
+if(!WORKS.length){$("works").hidden=true;document.querySelectorAll('a[href="#works"]').forEach(e=>e.remove());$("pickedBox").closest(".field").hidden=true;}
+function renderAll(){renderStyle();renderPicked();renderSheet();renderMissing();renderCrystals();renderWorks();renderTiers();renderOrder();}
+
+/* 範例：講義的 1999/03/13 */
+state.pre=compute(1999,3,13,3,13);
+renderAll();
+document.fonts&&document.fonts.ready.then(()=>{});
+</script>
+
+<script>(function(){var b=document.querySelector('.pay-tabs button[data-p=bank]');if(b)b.click();var c=document.querySelector('.pay-tabs button[data-p=card]');if(c)c.remove();var s=document.getElementById('stInv');if(s)s.remove();document.querySelectorAll('.st-no').forEach(function(e,i){e.textContent='STEP '+(i+1);});})();</script>
+</body>
+</html>
